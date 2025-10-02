@@ -7,7 +7,7 @@ from app.models import Base
 
 
 class UserEntity(Base):
-    __tablename__ = 'users'
+    __tablename__  = 'users'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(String(255), unique=True, nullable=False)

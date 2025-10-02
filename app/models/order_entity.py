@@ -7,7 +7,7 @@ from app.models import Base
 
 
 class OrderEntity(Base):
-    __table__ = 'orders'
+    __tablename__  = 'orders'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)

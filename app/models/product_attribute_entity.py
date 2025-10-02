@@ -5,7 +5,7 @@ from app.models import Base
 
 
 class ProductAttributeEntity(Base):
-    __table__ = 'product_attributes'
+    __tablename__  = 'product_attributes'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     product_id = Column(Integer, ForeignKey('products.id'), nullable=False)

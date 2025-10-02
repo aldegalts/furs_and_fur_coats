@@ -8,7 +8,7 @@ from app.models import Base
 
 
 class ProductEntity(Base):
-    __tablename__ = 'products'
+    __tablename__  = 'products'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(255), nullable=false)

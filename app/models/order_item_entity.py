@@ -6,7 +6,7 @@ from app.models import Base
 
 
 class OrderItemEntity(Base):
-    table_name = 'order_items'
+    __tablename__  = 'order_items'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     order_id = Column(Integer, ForeignKey('orders.id'), nullable=False)

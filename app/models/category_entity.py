@@ -5,7 +5,7 @@ from app.models import Base
 
 
 class CategoryEntity(Base):
-    __tablename__ = 'categories'
+    __tablename__  = 'categories'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     category = Column(String(100), nullable=False)
