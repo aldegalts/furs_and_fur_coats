@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, LargeBinar
 from sqlalchemy.orm import relationship
 from sympy import false
 
-from app.models import Base
+from infrastructure.database.models import Base
 
 
 class ProductEntity(Base):

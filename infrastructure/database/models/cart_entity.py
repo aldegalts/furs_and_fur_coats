@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
-from app.models import Base
+from infrastructure.database.models import Base
 
 
 class CartEntity(Base):
