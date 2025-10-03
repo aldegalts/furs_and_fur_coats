@@ -1,11 +1,13 @@
 from datetime import datetime
 from decimal import Decimal
-from typing import Optional, List
-
+from typing import Optional, List, TYPE_CHECKING
 from pydantic import BaseModel, field_validator, ConfigDict
-
 from app.error.product_exception import InvalidPriceException
-from app.schemas import CategoryResponse, ProductAttributeResponse
+
+
+if TYPE_CHECKING:
+    from app.schemas.category_schema import CategoryResponse
+    from app.schemas.product_attribute_schema import ProductAttributeResponse
 
 
 class ProductBase(BaseModel):

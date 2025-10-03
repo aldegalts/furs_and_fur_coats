@@ -1,9 +1,10 @@
-from typing import Optional
-
+from typing import Optional, TYPE_CHECKING
 from pydantic import BaseModel, field_validator, ConfigDict
-
 from app.error.cart_exception import InvalidQuantityException
-from app.schemas import ProductResponse
+
+
+if TYPE_CHECKING:
+    from app.schemas.product_schema import ProductResponse
 
 
 class CartItemBase(BaseModel):

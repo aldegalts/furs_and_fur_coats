@@ -1,9 +1,11 @@
 from datetime import datetime
-from typing import Optional
-
+from typing import Optional, TYPE_CHECKING
 from pydantic import BaseModel, EmailStr, field_validator, ConfigDict
-
 from app.error.user_exception import WeakPasswordException
+
+
+if TYPE_CHECKING:
+    from app.schemas.cart_schema import CartResponse
 
 
 class UserBase(BaseModel):

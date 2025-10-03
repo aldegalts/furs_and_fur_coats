@@ -1,8 +1,9 @@
-from typing import List
-
+from typing import List, TYPE_CHECKING
 from pydantic import BaseModel, ConfigDict
 
-from app.schemas.cart_item_schema import CartItemResponse
+
+if TYPE_CHECKING:
+    from app.schemas.cart_item_schema import CartItemResponse
 
 
 class CartBase(BaseModel):

@@ -1,8 +1,9 @@
-from typing import Optional, List
-
+from typing import Optional, List, TYPE_CHECKING
 from pydantic import BaseModel, ConfigDict
 
-from app.schemas.product_schema import ProductResponse
+
+if TYPE_CHECKING:
+    from app.schemas.product_schema import ProductResponse
 
 
 class CategoryBase(BaseModel):
