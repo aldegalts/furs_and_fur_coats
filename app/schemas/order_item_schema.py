@@ -43,4 +43,4 @@ class OrderItemResponse(OrderItemBase):
 
 
 class OrderItemWithProductResponse(OrderItemResponse):
-    product: ProductResponse
+    product: 'ProductResponse'

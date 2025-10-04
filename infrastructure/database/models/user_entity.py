@@ -20,3 +20,7 @@ class UserEntity(Base):
     orders = relationship(
         'OrderEntity', back_populates='user', cascade='all, delete-orphan', lazy='select'
     )
+
+    refresh_tokens = relationship(
+        'RefreshTokenEntity', back_populates='user', cascade='all, delete-orphan', lazy='select'
+    )

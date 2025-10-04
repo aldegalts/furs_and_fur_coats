@@ -1,3 +1,4 @@
+from typing import List
 from sqlalchemy.orm import Session
 from infrastructure.database.models import OrderEntity
 
@@ -13,10 +14,10 @@ class OrderRepository:
             .first()
         )
 
-    def list(self) -> list[OrderEntity]:
+    def list(self) -> List[OrderEntity]:
         return self.session.query(OrderEntity).all()
     
-    def get_by_user_id(self, user_id: int) -> list[OrderEntity]:
+    def get_by_user_id(self, user_id: int) -> List[OrderEntity]:
         return (
             self.session.query(OrderEntity)
             .filter(OrderEntity.user_id == user_id)

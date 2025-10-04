@@ -1,3 +1,4 @@
+from typing import List
 from sqlalchemy.orm import Session
 from infrastructure.database.models import ProductEntity
 
@@ -13,17 +14,17 @@ class ProductRepository:
             .first()
         )
 
-    def list(self) -> list[ProductEntity]:
+    def list(self) -> List[ProductEntity]:
         return self.session.query(ProductEntity).all()
 
-    def filter_by_price(self, min_price: float, max_price: float) -> list[ProductEntity]:
+    def filter_by_price(self, min_price: float, max_price: float) -> List[ProductEntity]:
         return (
             self.session.query(ProductEntity)
             .filter(ProductEntity.price >= min_price, ProductEntity.price <= max_price)
             .all()
         )
 
-    def get_by_category(self, category_id: int) -> list[ProductEntity]:
+    def get_by_category(self, category_id: int) -> List[ProductEntity]:
         return (
             self.session.query(ProductEntity)
             .filter(ProductEntity.category_id == category_id)

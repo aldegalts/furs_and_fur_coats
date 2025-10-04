@@ -1,3 +1,4 @@
+from typing import List
 from sqlalchemy.orm import Session
 from infrastructure.database.models import CategoryEntity
 
@@ -13,7 +14,7 @@ class CategoryRepository:
             .first()
         )
 
-    def list(self) -> list[CategoryEntity]:
+    def list(self) -> List[CategoryEntity]:
         return self.session.query(CategoryEntity).all()
 
     def add(self, category: CategoryEntity) -> CategoryEntity:

@@ -1,3 +1,5 @@
+from typing import List
+
 from sqlalchemy.orm import Session
 from infrastructure.database.models import ProductAttributeEntity
 
@@ -13,10 +15,10 @@ class ProductAttributeRepository:
             .first()
         )
 
-    def list(self) -> list[ProductAttributeEntity]:
+    def list(self) -> List[ProductAttributeEntity]:
         return self.session.query(ProductAttributeEntity).all()
 
-    def list_by_product(self, product_id: int) -> list[ProductAttributeEntity]:
+    def list_by_product(self, product_id: int) -> List[ProductAttributeEntity]:
         return (
             self.session.query(ProductAttributeEntity)
             .filter(ProductAttributeEntity.product_id == product_id)

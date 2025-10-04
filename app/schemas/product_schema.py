@@ -45,5 +45,5 @@ class ProductResponse(ProductBase):
 
 
 class ProductDetailResponse(ProductResponse):
-    category: CategoryResponse
+    category: 'CategoryResponse'
     attributes: List['ProductAttributeResponse'] = []

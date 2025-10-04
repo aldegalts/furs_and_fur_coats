@@ -15,13 +15,6 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password: str
 
-    @field_validator('password')
-    @classmethod
-    def validate_password(cls, v):
-        if len(v) < 8:
-            raise WeakPasswordException(min_length=8)
-        return v
-
 
 class UserUpdate(BaseModel):
     email: Optional[EmailStr] = None

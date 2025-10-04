@@ -1,3 +1,4 @@
+from typing import List
 from sqlalchemy.orm import Session
 from infrastructure.database.models import UserEntity
 
@@ -20,7 +21,7 @@ class UserRepository:
             first()
         )
 
-    def list(self) -> list[UserEntity]:
+    def list(self) -> List[UserEntity]:
         return self.session.query(UserEntity).all()
 
     def add(self, user: UserEntity) -> UserEntity:

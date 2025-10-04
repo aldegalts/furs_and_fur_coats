@@ -7,3 +7,4 @@ from .order_item_entity import OrderItemEntity
 from .product_attribute_entity import ProductAttributeEntity
 from .product_entity import ProductEntity
 from .user_entity import UserEntity
+from .refresh_token_entity import RefreshTokenEntity

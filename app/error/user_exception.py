@@ -33,3 +33,9 @@ class WeakPasswordException(ValidationException):
 class InvalidCredentialsException(AuthenticationException):
     def __init__(self):
         super().__init__("Неверный email или пароль")
+
+
+class UserUnauthorizedException(AuthenticationException):
+    def __init__(self):
+        message = "Пользователь не авторизован"
+        super().__init__(message)

@@ -42,4 +42,4 @@ class CartItemResponse(CartItemBase):
 
 
 class CartItemWithProductResponse(CartItemResponse):
-    product: ProductResponse
+    product: 'ProductResponse'
