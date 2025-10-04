@@ -1,7 +1,6 @@
 from datetime import datetime
 from typing import Optional, TYPE_CHECKING
-from pydantic import BaseModel, EmailStr, field_validator, ConfigDict
-from app.error.user_exception import WeakPasswordException
+from pydantic import BaseModel, EmailStr, ConfigDict
 
 
 if TYPE_CHECKING:

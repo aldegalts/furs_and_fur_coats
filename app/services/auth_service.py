@@ -8,8 +8,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
 from app.auth.security import hash_password, verify_password, create_access_token, decode_access_token
-from app.error import UserAlreadyExistsException, InvalidCredentialsException, WeakPasswordException, \
-    AuthenticationException
+from app.error import UserAlreadyExistsException, InvalidCredentialsException, WeakPasswordException
 from app.error.user_exception import UserUnauthorizedException, UserNotFoundException
 from app.schemas import UserCreate
 from app.schemas.auth_schema import TokenPairResponse, RefreshRequest
@@ -18,6 +17,7 @@ from infrastructure.database.repository import UserRepository
 from infrastructure.database.repository.refresh_token_repository import RefreshTokenRepository
 
 load_dotenv()
+
 SECRET_KEY = os.getenv("JWT_SECRET")
 ALGORITHM = os.getenv("JWT_ALGORITHM")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("JWT_EXPIRES_MINUTES"))
