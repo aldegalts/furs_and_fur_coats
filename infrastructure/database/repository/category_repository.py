@@ -14,7 +14,7 @@ class CategoryRepository:
             .first()
         )
 
-    def list(self) -> List[CategoryEntity]:
+    def get_all(self) -> List[CategoryEntity]:
         return self.session.query(CategoryEntity).all()
 
     def add(self, category: CategoryEntity) -> CategoryEntity:
