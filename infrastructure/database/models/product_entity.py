@@ -11,12 +11,12 @@ class ProductEntity(Base):
     __tablename__  = 'products'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(255), nullable=false)
+    name = Column(String(255), nullable=False)
     category_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
-    description = Column(Text, nullable=false)
-    price = Column(Numeric(10, 2), nullable=false)
+    description = Column(Text, nullable=False)
+    price = Column(Numeric(10, 2), nullable=False)
     image = Column(LargeBinary)
-    created_at = Column(DateTime(timezone=False), default=datetime.now, nullable=False)
+    created_at = Column(DateTime(timezone=False), default=datetime.now(), nullable=False)
 
     category = relationship(
         'CategoryEntity', back_populates='products', lazy='joined'

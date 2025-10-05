@@ -11,7 +11,7 @@ class OrderEntity(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    created_at = Column(DateTime(timezone=False), default=datetime.now)
+    created_at = Column(DateTime(timezone=False), default=datetime.now())
 
     user = relationship(
         'UserEntity', back_populates='orders', lazy='select'
