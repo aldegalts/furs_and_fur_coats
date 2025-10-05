@@ -17,9 +17,6 @@ class CartCreate(BaseModel):
 class CartResponse(CartBase):
     id: int
     user_id: int
+    items: List['CartItemResponse'] = []
 
     model_config = ConfigDict(from_attributes=True)
-
-
-class CartWithItemsResponse(CartResponse):
-    items: List['CartItemResponse'] = []

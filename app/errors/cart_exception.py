@@ -24,15 +24,6 @@ class CartItemNotFoundException(NotFoundException):
         super().__init__(message, {'cart_item_id': cart_item_id})
 
 
-class InvalidQuantityException(ValidationException):
-    def __init__(self, quantity: Any, min_value: int = 1):
-        message = f"Количество должно быть >= {min_value}, получено: {quantity}"
-        super().__init__(message, {
-            'quantity': quantity,
-            'min_value': min_value
-        })
-
-
 class EmptyCartException(BusinessLogicException):
     def __init__(self, cart_id: int):
         message = "Невозможно оформить заказ: корзина пуста"

@@ -31,7 +31,6 @@ from .product_exception import (
 from .cart_exception import (
     CartNotFoundException,
     CartItemNotFoundException,
-    InvalidQuantityException,
     EmptyCartException,
     ProductAlreadyInCartException
 )

@@ -24,6 +24,7 @@ from .product_attribute_schema import (
 )
 
 from .product_schema import (
+    ProductBase,
     ProductFilterRequest,
     ProductResponse
 )
@@ -39,8 +40,7 @@ from .cart_item_schema import (
 from .cart_schema import (
     CartBase,
     CartCreate,
-    CartResponse,
-    CartWithItemsResponse
+    CartResponse
 )
 
 from .order_item_schema import (
@@ -69,6 +69,6 @@ OrderItemResponse.model_rebuild()
 CategoryWithProductsResponse.model_rebuild()
 CartItemWithProductResponse.model_rebuild()
 OrderItemWithProductResponse.model_rebuild()
-CartWithItemsResponse.model_rebuild()
+CartResponse.model_rebuild()
 OrderWithItemsResponse.model_rebuild()
 UserDetailResponse.model_rebuild()

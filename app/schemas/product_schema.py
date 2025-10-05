@@ -7,6 +7,10 @@ if TYPE_CHECKING:
     from app.schemas.product_attribute_schema import ProductAttributeResponse
 
 
+class ProductBase(BaseModel):
+    pass
+
+
 class ProductFilterRequest(BaseModel):
     category_id: Optional[int] = None
     min_price: Optional[Decimal] = None
