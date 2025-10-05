@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 from app.auth.security import hash_password, verify_password, create_access_token, decode_access_token
 from app.errors.user_exception import UserUnauthorizedException, UserNotFoundException, UserAlreadyExistsException, \
     WeakPasswordException, InvalidCredentialsException
-from app.schemas import UserCreate
+from app.schemas import UserCreate, UserResponse
 from app.schemas.auth_schema import TokenPairResponse, RefreshRequest
 from infrastructure.database.models import UserEntity, RefreshTokenEntity
 from infrastructure.database.repository import UserRepository
@@ -30,7 +30,7 @@ class AuthService:
         self.user_repo = UserRepository(db)
         self.refresh_repo = RefreshTokenRepository(db)
 
-    def register_user(self, user_in: UserCreate) -> UserEntity:
+    def register_user(self, user_in: UserCreate) -> UserResponse:
         existing = self.user_repo.get_by_email(user_in.email)
         if existing:
             raise UserAlreadyExistsException(user_in.email)
@@ -38,7 +38,8 @@ class AuthService:
             raise WeakPasswordException(min_length=8)
 
         user = UserEntity(email=user_in.email, password_hash=hash_password(user_in.password))
-        return  self.user_repo.add(user)
+        self.user_repo.add(user)
+        return  UserResponse.model_validate(user)
 
     def login_user(self, form_data: OAuth2PasswordRequestForm = Depends()) -> TokenPairResponse:
         user = self.user_repo.get_by_email(form_data.username)
@@ -63,7 +64,7 @@ class AuthService:
         )
         return TokenPairResponse(access_token=access_token, refresh_token=refresh_token_str)
 
-    def get_current_user(self, token: str) -> UserEntity:
+    def get_current_user(self, token: str) -> UserResponse:
         payload = decode_access_token(token, SECRET_KEY, algorithms=(ALGORITHM,))
         if not payload or "sub" not in payload:
             raise UserUnauthorizedException()
@@ -71,7 +72,7 @@ class AuthService:
         user = self.user_repo.get_by_id(user_id)
         if not user:
             raise UserNotFoundException()
-        return user
+        return UserResponse.model_validate(user)
 
     def refresh_tokens(self, payload: RefreshRequest) -> TokenPairResponse:
         token = self.refresh_repo.get_by_token(payload.refresh_token)
