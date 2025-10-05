@@ -1,4 +1,7 @@
-from typing import List
+from decimal import Decimal
+from typing import List, Optional
+
+from sqlalchemy import asc, desc
 from sqlalchemy.orm import Session
 from infrastructure.database.models import ProductEntity
 
@@ -17,26 +20,28 @@ class ProductRepository:
     def list(self) -> List[ProductEntity]:
         return self.session.query(ProductEntity).all()
 
-    def filter_by_price(self, min_price: float, max_price: float) -> List[ProductEntity]:
-        return (
-            self.session.query(ProductEntity)
-            .filter(ProductEntity.price >= min_price, ProductEntity.price <= max_price)
-            .all()
-        )
+    def get_filtered_products(
+            self,
+            category_id: Optional[int] = None,
+            min_price: Optional[Decimal] = None,
+            max_price: Optional[Decimal] = None,
+            sort_by_price: Optional[str] = None
+    ) -> List[ProductEntity]:
 
-    def get_by_category(self, category_id: int) -> List[ProductEntity]:
-        return (
-            self.session.query(ProductEntity)
-            .filter(ProductEntity.category_id == category_id)
-            .all()
-        )
+        query = self.session.query(ProductEntity)
 
-    def add(self, product: ProductEntity) -> ProductEntity:
-        self.session.add(product)
-        self.session.commit()
-        self.session.refresh(product)
-        return product
+        if category_id is not None:
+            query = query.filter(ProductEntity.category_id == category_id)
 
-    def delete(self, product: ProductEntity) -> None:
-        self.session.delete(product)
-        self.session.commit()
+        if min_price is not None:
+            query = query.filter(ProductEntity.price >= min_price)
+
+        if max_price is not None:
+            query = query.filter(ProductEntity.price <= max_price)
+
+        if sort_by_price == "asc":
+            query = query.order_by(asc(ProductEntity.price))
+        elif sort_by_price == "desc":
+            query = query.order_by(desc(ProductEntity.price))
+
+        return query.all()

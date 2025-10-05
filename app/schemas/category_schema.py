@@ -11,15 +11,6 @@ class CategoryBase(BaseModel):
     parent_id: Optional[int] = None
 
 
-class CategoryCreate(CategoryBase):
-    pass
-
-
-class CategoryUpdate(CategoryBase):
-    category: Optional[str] = None
-    parent_id: Optional[int] = None
-
-
 class CategoryResponse(CategoryBase):
     id: int
 

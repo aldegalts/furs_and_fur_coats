@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from fastapi import Request
 from starlette.responses import JSONResponse
 
-from app.error import AppException
+from app.errors import AppException
+from app.routers.product_router import router as product_router
 from app.routers.category_router import router as category_router
 from app.routers.auth_yandex_router import router as auth_yandex_router
 from app.routers.auth_router import router as auth_router
@@ -21,6 +22,7 @@ app.add_exception_handler(AppException, app_exception_handler)
 app.include_router(auth_router)
 app.include_router(auth_yandex_router)
 app.include_router(category_router)
+app.include_router(product_router)
 
 
 @app.get("/health")

@@ -1,6 +1,6 @@
 from typing import Optional
 
-from app.error.app_exception import NotFoundException, AlreadyExistsException, ValidationException, \
+from app.errors.app_exception import NotFoundException, AlreadyExistsException, ValidationException, \
     AuthenticationException
 
 

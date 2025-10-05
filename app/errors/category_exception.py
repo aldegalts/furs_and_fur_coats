@@ -1,4 +1,4 @@
-from app.error.app_exception import NotFoundException, ValidationException
+from app.errors.app_exception import NotFoundException, ValidationException
 
 
 class CategoryNotFoundException(NotFoundException):

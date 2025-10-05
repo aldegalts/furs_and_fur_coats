@@ -8,8 +8,8 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
 from app.auth.security import hash_password, verify_password, create_access_token, decode_access_token
-from app.error import UserAlreadyExistsException, InvalidCredentialsException, WeakPasswordException
-from app.error.user_exception import UserUnauthorizedException, UserNotFoundException
+from app.errors.user_exception import UserUnauthorizedException, UserNotFoundException, UserAlreadyExistsException, \
+    WeakPasswordException, InvalidCredentialsException
 from app.schemas import UserCreate
 from app.schemas.auth_schema import TokenPairResponse, RefreshRequest
 from infrastructure.database.models import UserEntity, RefreshTokenEntity

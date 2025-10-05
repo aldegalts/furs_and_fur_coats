@@ -1,7 +1,6 @@
 from decimal import Decimal
 from typing import Optional, TYPE_CHECKING
-from pydantic import BaseModel, field_validator, ConfigDict
-from app.error import InvalidPriceException, InvalidQuantityException
+from pydantic import BaseModel, ConfigDict
 
 if TYPE_CHECKING:
     from app.schemas.product_schema import ProductResponse
@@ -11,20 +10,6 @@ class OrderItemBase(BaseModel):
     product_id: int
     unit_price: Decimal
     quantity: int
-
-    @field_validator('unit_price')
-    @classmethod
-    def validate_price(cls, v):
-        if v <= 0:
-            raise InvalidPriceException(price=v)
-        return v
-
-    @field_validator('quantity')
-    @classmethod
-    def validate_quantity(cls, v):
-        if v <= 0:
-            raise InvalidQuantityException(quantity=v, min_value=1)
-        return v
 
 
 class OrderItemCreate(OrderItemBase):

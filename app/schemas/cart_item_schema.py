@@ -1,6 +1,6 @@
 from typing import Optional, TYPE_CHECKING
 from pydantic import BaseModel, field_validator, ConfigDict
-from app.error.cart_exception import InvalidQuantityException
+from app.errors.cart_exception import InvalidQuantityException
 
 
 if TYPE_CHECKING:

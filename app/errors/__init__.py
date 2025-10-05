@@ -13,7 +13,8 @@ from .user_exception import (
     UserNotFoundException,
     UserAlreadyExistsException,
     WeakPasswordException,
-    InvalidCredentialsException
+    InvalidCredentialsException,
+    UserUnauthorizedException
 )
 
 from .category_exception import (
@@ -21,17 +22,9 @@ from .category_exception import (
     CircularCategoryReferenceException
 )
 
-from .product_attribute_exception import (
-    ProductNotFoundException,
-    InvalidPriceException,
-    ProductWithoutAttributesException,
-    InsufficientStockException
-)
-
 from .product_exception import (
     ProductNotFoundException,
-    InvalidPriceException,
-    ProductWithoutAttributesException,
+    IncorrectPriceInFilter,
     InsufficientStockException
 )
 

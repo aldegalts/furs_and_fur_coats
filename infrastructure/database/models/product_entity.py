@@ -2,7 +2,6 @@ from datetime import datetime
 
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, LargeBinary, Text, Numeric
 from sqlalchemy.orm import relationship
-from sympy import false
 
 from infrastructure.database.models import Base
 
@@ -15,7 +14,7 @@ class ProductEntity(Base):
     category_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
     description = Column(Text, nullable=False)
     price = Column(Numeric(10, 2), nullable=False)
-    image = Column(LargeBinary)
+    image = Column(String(255), nullable=False)
     created_at = Column(DateTime(timezone=False), default=datetime.now(), nullable=False)
 
     category = relationship(
