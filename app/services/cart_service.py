@@ -2,7 +2,8 @@ from typing import Optional
 
 from sqlalchemy.orm import Session
 
-from app.errors import ProductNotFoundException, CartItemNotFoundException, EmptyOrderException
+from app.errors.cart_exception import EmptyCartException
+from app.errors import ProductNotFoundException, CartItemNotFoundException
 from app.schemas import CartResponse, CartItemWithProductResponse
 from infrastructure.database.models import CartEntity, CartItemEntity
 from infrastructure.database.repository import CartRepository, CartItemRepository, ProductRepository
@@ -88,4 +89,4 @@ class CartService:
         cart = self.get_cart(user_id)
 
         if not cart.items or len(cart.items) == 0:
-            raise EmptyOrderException()
+            raise EmptyCartException()

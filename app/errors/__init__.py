@@ -37,8 +37,5 @@ from .cart_exception import (
 
 from .order_exception import (
     OrderNotFoundException,
-    OrderItemNotFoundException,
-    EmptyOrderException,
-    OrderAccessDeniedException,
-    OrderAlreadyProcessedException
+    OrderAccessDeniedException
 )

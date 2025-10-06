@@ -1,6 +1,4 @@
-from datetime import datetime
-
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, LargeBinary, Text, Numeric
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, LargeBinary, Text, Numeric, func
 from sqlalchemy.orm import relationship
 
 from infrastructure.database.models import Base
@@ -15,7 +13,7 @@ class ProductEntity(Base):
     description = Column(Text, nullable=False)
     price = Column(Numeric(10, 2), nullable=False)
     image = Column(String(255), nullable=False)
-    created_at = Column(DateTime(timezone=False), default=datetime.now(), nullable=False)
+    created_at = Column(DateTime(timezone=False), server_default=func.now(), nullable=False)
 
     category = relationship(
         'CategoryEntity', back_populates='products', lazy='joined'

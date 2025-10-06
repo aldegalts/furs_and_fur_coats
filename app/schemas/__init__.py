@@ -45,8 +45,6 @@ from .cart_schema import (
 
 from .order_item_schema import (
     OrderItemBase,
-    OrderItemCreate,
-    OrderItemUpdate,
     OrderItemResponse,
     OrderItemWithProductResponse
 )

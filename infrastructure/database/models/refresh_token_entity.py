@@ -1,5 +1,4 @@
-from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, func
 from sqlalchemy.orm import relationship
 
 from infrastructure.database.models import Base
@@ -11,7 +10,7 @@ class RefreshTokenEntity(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
     token = Column(String(255), unique=True, nullable=False)
-    created_at = Column(DateTime(timezone=False), default=datetime.now())
+    created_at = Column(DateTime(timezone=False), server_default=func.now())
     expires_at = Column(DateTime(timezone=False), nullable=False)
     revoked = Column(Boolean, default=False, nullable=False)
 

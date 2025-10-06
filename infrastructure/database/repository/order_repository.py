@@ -29,3 +29,7 @@ class OrderRepository:
         self.session.commit()
         self.session.refresh(order)
         return order
+
+    def refresh(self, order: OrderEntity) -> OrderEntity:
+        self.session.commit()
+        self.session.refresh(order)
