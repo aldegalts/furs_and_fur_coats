@@ -23,7 +23,7 @@ def create_order(
         current_user: UserEntity = Depends(get_current_user),
         db: Session = Depends(get_db)
 ):
-    return OrderService(db).create_order_from_cart(current_user.id)
+    return OrderService(db).create_order_from_cart(current_user.id, current_user.email)
 
 
 @router.get(

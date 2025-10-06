@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтверждение заказа</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Заказ оформлен!</h1>
+        </div>
+
+        <div class="order-info">
+            <p><strong>Номер заказа:</strong> #{{ order_id }}</p>
+            <p><strong>Дата оформления:</strong> {{ order_date }}</p>
+        </div>
+
+        <h2>Состав заказа:</h2>
+
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th style="text-align: center;">Количество</th>
+                    <th style="text-align: right;">Цена</th>
+                    <th style="text-align: right;">Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td style="text-align: center;">{{ item.quantity }} шт.</td>
+                    <td style="text-align: right;">{{ item.unit_price|round(2) }} ₽</td>
+                    <td style="text-align: right;">{{ item.total_price|round(2) }} ₽</td>
+                </tr>
+                {% endfor %}
+                <tr class="total-row">
+                    <td colspan="3" style="text-align: right;">Итого:</td>
+                    <td style="text-align: right;">{{ total_amount|round(2) }} ₽</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="thank-you">
+            Спасибо за ваш заказ!
+        </div>
+
+        <p style="text-align: center; color: #666;">
+            Мы свяжемся с вами в ближайшее время для уточнения деталей доставки.
+        </p>
+
+        <div class="footer">
+            <p><strong>Интернет-магазин "Меха и шубы"</strong></p>
+            <p>Если у вас есть вопросы, свяжитесь с нами</p>
+        </div>
+    </div>
+</body>
+</html>
