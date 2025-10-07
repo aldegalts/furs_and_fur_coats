@@ -17,7 +17,7 @@ router = APIRouter(tags=["Orders"])
     "/order",
     response_model=OrderWithItemsResponse,
     status_code=status.HTTP_201_CREATED,
-    summary="Создать заказ из корзины"
+    summary="Create an order from a shopping cart"
 )
 def create_order(
         current_user: UserEntity = Depends(get_current_user),
@@ -30,7 +30,7 @@ def create_order(
     "/orders",
     response_model=List[OrderWithItemsResponse],
     status_code=status.HTTP_200_OK,
-    summary="Получить все заказы пользователя"
+    summary="Get all user's orders"
 )
 def get_user_orders(
         current_user: UserEntity = Depends(get_current_user),
@@ -43,7 +43,7 @@ def get_user_orders(
     "/orders/{order_id}",
     response_model=OrderWithItemsResponse,
     status_code=status.HTTP_200_OK,
-    summary="Получить конкретный заказ"
+    summary="Get an order by its id"
 )
 def get_order(
         order_id: int,

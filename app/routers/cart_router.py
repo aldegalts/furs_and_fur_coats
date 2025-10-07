@@ -14,7 +14,7 @@ router = APIRouter(prefix= "/cart", tags=["Cart"])
 @router.get("",
             response_model=CartResponse,
             status_code=status.HTTP_200_OK,
-            summary="Получить корзину текущего пользователя"
+            summary="Get the current user's shopping cart"
             )
 def get_cart(
         current_user: UserEntity = Depends(get_current_user),
@@ -29,7 +29,7 @@ def get_cart(
     "",
     response_model=CartItemWithProductResponse,
     status_code=status.HTTP_201_CREATED,
-    summary="Добавить товар в корзину"
+    summary="Add an item to the current user's shopping cart"
 )
 def add_cart_item_to_cart(
         item_data: CartItemBase,
@@ -47,7 +47,7 @@ def add_cart_item_to_cart(
     "/{item_id}",
     response_model=CartItemWithProductResponse,
     status_code=status.HTTP_200_OK,
-    summary="Обновить количество товара в корзине"
+    summary="Update the quantity of the product in the current user's shopping cart"
 )
 def update_cart_item(
     item_id: int,
@@ -65,7 +65,7 @@ def update_cart_item(
 @router.delete(
     "/{item_id}",
     status_code=status.HTTP_204_NO_CONTENT,
-    summary="Удалить товар из корзины"
+    summary="Delete an item from the current user's shopping cart"
 )
 def delete_cart_item(
     item_id: int,

@@ -17,7 +17,10 @@ YANDEX_CLIENT_ID = os.getenv("YANDEX_CLIENT_ID")
 YANDEX_REDIRECT_URI = os.getenv("YANDEX_REDIRECT_URI")
 
 
-@router.get("/login")
+@router.get(
+    "/login",
+    summary="Login with Yandex OAuth"
+)
 def login_redirect():
     url = (
         "https://oauth.yandex.ru/authorize?"
@@ -26,7 +29,12 @@ def login_redirect():
     return RedirectResponse(url)
 
 
-@router.get("/callback", response_model=TokenPairResponse, status_code=status.HTTP_200_OK)
+@router.get(
+    "/callback",
+    response_model=TokenPairResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Login with Yandex OAuth"
+)
 def callback(code: str, db: Session = Depends(get_db)):
     service = AuthYandexService(db)
     return service.login_or_register(
