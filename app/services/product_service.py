@@ -1,11 +1,10 @@
+from decimal import Decimal
 from typing import List
 
-from graphene import Decimal
 from sqlalchemy.orm import Session
 
 from app.errors.product_exception import ProductNotFoundException, IncorrectPriceInFilter
 from app.schemas import ProductResponse
-from app.schemas.product_schema import ProductFilterRequest
 from infrastructure.database.repository import ProductRepository
 
 

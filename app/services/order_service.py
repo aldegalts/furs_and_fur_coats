@@ -39,10 +39,7 @@ class OrderService:
 
         self.order_repo.refresh(order)
 
-        try:
-            self.email_service.send_order_confirmation(order, user_email)
-        except Exception as e:
-            print(f"Failed to send order confirmation email: {e}")
+        self.email_service.send_order_confirmation(order, user_email)
 
         return OrderResponse.model_validate(order)
 

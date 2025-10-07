@@ -10,8 +10,8 @@ from sqlalchemy.orm import Session
 from app.utils.auth.security import hash_password, verify_password, create_access_token, decode_access_token
 from app.errors.user_exception import UserUnauthorizedException, UserNotFoundException, UserAlreadyExistsException, \
     WeakPasswordException, InvalidCredentialsException
-from app.schemas import UserCreate, UserResponse
-from app.schemas.auth_schema import TokenPairResponse, RefreshRequest
+from app.schemas import UserResponse
+from app.schemas.auth_schema import TokenPairResponse
 from infrastructure.database.models import UserEntity, RefreshTokenEntity
 from infrastructure.database.repository import UserRepository
 from infrastructure.database.repository.refresh_token_repository import RefreshTokenRepository

@@ -23,11 +23,3 @@ app.include_router(product_router)
 app.include_router(cart_router)
 app.include_router(order_router)
 app.include_router(analytics_router)
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
-
-
-
