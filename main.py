@@ -3,6 +3,7 @@ from fastapi import Request
 from starlette.responses import JSONResponse
 
 from app.errors import AppException
+from app.routers.analytics_router import router as analytics_router
 from app.routers.order_router import router as order_router
 from app.routers.product_router import router as product_router
 from app.routers.category_router import router as category_router
@@ -27,7 +28,7 @@ app.include_router(category_router)
 app.include_router(product_router)
 app.include_router(cart_router)
 app.include_router(order_router)
-
+app.include_router(analytics_router)
 
 @app.get("/health")
 def health():

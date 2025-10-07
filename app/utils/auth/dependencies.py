@@ -3,15 +3,14 @@ from typing import Annotated
 
 from dotenv import load_dotenv
 from fastapi import Depends
-from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
-from app.auth.security import decode_access_token
+from app.utils.auth.security import decode_access_token
 from app.errors.user_exception import UserUnauthorizedException, UserNotFoundException
 from infrastructure.database.database_session import get_db
 from infrastructure.database.models.user_entity import UserEntity
 from infrastructure.database.repository.user_repository import UserRepository
-from app.auth.oauth2 import oauth2_scheme
+from app.utils.auth.oauth2 import oauth2_scheme
 
 load_dotenv()
 

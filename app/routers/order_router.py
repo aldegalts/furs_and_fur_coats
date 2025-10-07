@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette import status
 
-from app.auth.dependencies import get_current_user
+from app.utils.auth.dependencies import get_current_user
 from app.schemas import OrderWithItemsResponse
 from app.services.order_service import OrderService
 from infrastructure.database.database_session import get_db

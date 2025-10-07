@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette import status
 
-from app.auth.dependencies import get_current_user
+from app.utils.auth.dependencies import get_current_user
 from app.schemas import CartResponse, CartItemWithProductResponse, CartItemBase, CartItemUpdate
 from app.services.cart_service import CartService
 from infrastructure.database.database_session import get_db

@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
 
-from app.auth.security import hash_password, create_access_token
+from app.utils.auth.security import hash_password, create_access_token
 from app.schemas.auth_schema import AccessTokenResponse, TokenPairResponse
 from infrastructure.database.models import UserEntity, RefreshTokenEntity
 from infrastructure.database.repository import UserRepository, RefreshTokenRepository

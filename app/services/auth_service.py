@@ -7,7 +7,7 @@ from fastapi import HTTPException, Depends, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
-from app.auth.security import hash_password, verify_password, create_access_token, decode_access_token
+from app.utils.auth.security import hash_password, verify_password, create_access_token, decode_access_token
 from app.errors.user_exception import UserUnauthorizedException, UserNotFoundException, UserAlreadyExistsException, \
     WeakPasswordException, InvalidCredentialsException
 from app.schemas import UserCreate, UserResponse
