@@ -18,14 +18,12 @@ from .user_exception import (
 )
 
 from .category_exception import (
-    CategoryNotFoundException,
-    CircularCategoryReferenceException
+    CategoryNotFoundException
 )
 
 from .product_exception import (
     ProductNotFoundException,
-    IncorrectPriceInFilter,
-    InsufficientStockException
+    IncorrectPriceInFilter
 )
 
 from .cart_exception import (

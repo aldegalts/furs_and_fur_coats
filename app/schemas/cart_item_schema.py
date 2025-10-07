@@ -1,5 +1,5 @@
 from typing import Optional, TYPE_CHECKING
-from pydantic import BaseModel, field_validator, ConfigDict
+from pydantic import BaseModel, ConfigDict
 
 
 if TYPE_CHECKING:
@@ -9,10 +9,6 @@ if TYPE_CHECKING:
 class CartItemBase(BaseModel):
     product_id: int
     quantity: int
-
-
-class CartItemCreate(CartItemBase):
-    cart_id: int
 
 
 class CartItemUpdate(BaseModel):

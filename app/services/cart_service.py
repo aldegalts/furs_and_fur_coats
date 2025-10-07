@@ -16,14 +16,14 @@ class CartService:
         self.cart_item_repo = CartItemRepository(db)
         self.product_repo = ProductRepository(db)
 
-    def get_or_create_cart(self, user_id: int) -> CartEntity:
+    def get_or_create_cart(self, user_id: int) -> CartItemWithProductResponse:
         cart = self.cart_repo.get_by_user_id(user_id)
 
         if not cart:
             cart = CartEntity(user_id=user_id)
             self.cart_repo.add(cart)
 
-        return cart
+        return CartItemWithProductResponse.model_validate(cart)
 
     def get_cart(self, user_id: int) -> CartResponse:
         return CartResponse.model_validate(

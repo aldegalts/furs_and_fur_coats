@@ -11,7 +11,7 @@ class ProductBase(BaseModel):
     pass
 
 
-class ProductFilterRequest(BaseModel):
+class ProductFilterRequest(ProductBase):
     category_id: Optional[int] = None
     min_price: Optional[Decimal] = None
     max_price: Optional[Decimal] = None
@@ -20,7 +20,7 @@ class ProductFilterRequest(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-class ProductResponse(BaseModel):
+class ProductResponse(ProductBase):
     name: str
     category_id: int
     description: str

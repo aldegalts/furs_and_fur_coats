@@ -1,5 +1,6 @@
 from typing import List
 
+from graphene import Decimal
 from sqlalchemy.orm import Session
 
 from app.errors.product_exception import ProductNotFoundException, IncorrectPriceInFilter
@@ -20,16 +21,22 @@ class ProductService:
 
         return ProductResponse.model_validate(product)
 
-    def get_products(self, filters: ProductFilterRequest) -> List[ProductResponse]:
-        if filters.min_price is not None and filters.max_price is not None:
-            if filters.min_price > filters.max_price:
+    def get_products(
+            self,
+            category_id: int,
+            min_price: Decimal,
+            max_price: Decimal,
+            sort_by_price: str
+    ) -> List[ProductResponse]:
+        if min_price is not None and max_price is not None:
+            if min_price > max_price:
                 raise IncorrectPriceInFilter()
 
         products = self.repository.get_filtered_products(
-            category_id=filters.category_id,
-            min_price=filters.min_price,
-            max_price=filters.max_price,
-            sort_by_price=filters.sort_by_price
+            category_id=category_id,
+            min_price=min_price,
+            max_price=max_price,
+            sort_by_price=sort_by_price
         )
 
         if not products:

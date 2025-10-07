@@ -29,4 +29,6 @@ def login_redirect():
 @router.get("/callback", response_model=TokenPairResponse, status_code=status.HTTP_200_OK)
 def callback(code: str, db: Session = Depends(get_db)):
     service = AuthYandexService(db)
-    return service.login_or_register(code)
+    return service.login_or_register(
+        code=code
+    )

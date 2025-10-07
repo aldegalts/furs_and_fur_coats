@@ -30,20 +30,21 @@ class AuthService:
         self.user_repo = UserRepository(db)
         self.refresh_repo = RefreshTokenRepository(db)
 
-    def register_user(self, user_in: UserCreate) -> UserResponse:
-        existing = self.user_repo.get_by_email(user_in.email)
+    def register_user(self, email: str, password: str) -> UserResponse:
+        existing = self.user_repo.get_by_email(email)
         if existing:
-            raise UserAlreadyExistsException(user_in.email)
-        if len(user_in.password) < 8:
+            raise UserAlreadyExistsException(email)
+        if len(password) < 8:
             raise WeakPasswordException(min_length=8)
 
-        user = UserEntity(email=user_in.email, password_hash=hash_password(user_in.password))
+        user = UserEntity(email=email, password_hash=hash_password(password))
         self.user_repo.add(user)
+
         return  UserResponse.model_validate(user)
 
-    def login_user(self, form_data: OAuth2PasswordRequestForm = Depends()) -> TokenPairResponse:
-        user = self.user_repo.get_by_email(form_data.username)
-        if not user or not verify_password(form_data.password, user.password_hash):
+    def login_user(self, username: str, password: str, form_data: OAuth2PasswordRequestForm = Depends()) -> TokenPairResponse:
+        user = self.user_repo.get_by_email(username)
+        if not user or not verify_password(password, user.password_hash):
             raise InvalidCredentialsException()
 
         access_token = create_access_token(
@@ -62,7 +63,11 @@ class AuthService:
                 expires_at=refresh_expires_at,
             )
         )
-        return TokenPairResponse(access_token=access_token, refresh_token=refresh_token_str)
+
+        return TokenPairResponse(
+            access_token=access_token,
+            refresh_token=refresh_token_str
+        )
 
     def get_current_user(self, token: str) -> UserResponse:
         payload = decode_access_token(token, SECRET_KEY, algorithms=(ALGORITHM,))
@@ -74,8 +79,8 @@ class AuthService:
             raise UserNotFoundException()
         return UserResponse.model_validate(user)
 
-    def refresh_tokens(self, payload: RefreshRequest) -> TokenPairResponse:
-        token = self.refresh_repo.get_by_token(payload.refresh_token)
+    def refresh_tokens(self, refresh_token: str) -> TokenPairResponse:
+        token = self.refresh_repo.get_by_token(refresh_token)
         if not token or token.revoked:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Неверный refresh токен")
         if token.expires_at < datetime.now():
@@ -99,7 +104,11 @@ class AuthService:
             algorithm=ALGORITHM,
             expires_minutes=ACCESS_TOKEN_EXPIRE_MINUTES,
         )
-        return TokenPairResponse(access_token=access, refresh_token=new_refresh_str)
+
+        return TokenPairResponse(
+            access_token=access,
+            refresh_token=new_refresh_str
+        )
 
     def logout_user(self, user_id: int):
         self.refresh_repo.delete_user_tokens(user_id)

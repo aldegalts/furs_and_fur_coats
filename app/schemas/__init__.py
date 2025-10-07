@@ -1,7 +1,6 @@
 from .auth_schema import (
     TokenPairResponse,
     AccessTokenResponse,
-    LoginRequest,
     RefreshRequest
 )
 
@@ -31,7 +30,6 @@ from .product_schema import (
 
 from .cart_item_schema import (
     CartItemBase,
-    CartItemCreate,
     CartItemUpdate,
     CartItemResponse,
     CartItemWithProductResponse
@@ -39,7 +37,6 @@ from .cart_item_schema import (
 
 from .cart_schema import (
     CartBase,
-    CartCreate,
     CartResponse
 )
 
@@ -51,9 +48,16 @@ from .order_item_schema import (
 
 from .order_schema import (
     OrderBase,
-    OrderCreate,
     OrderResponse,
     OrderWithItemsResponse
+)
+
+from .analytics_schema import (
+    ProductRecommendation,
+    AnalyticsPeriod,
+    ProductSummary,
+    RawSalesData,
+    AnalyticsResponse
 )
 
 

@@ -10,10 +10,6 @@ class CartBase(BaseModel):
     pass
 
 
-class CartCreate(BaseModel):
-    user_id: int
-
-
 class CartResponse(CartBase):
     id: int
     user_id: int

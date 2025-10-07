@@ -17,8 +17,12 @@ router = APIRouter(prefix= "/cart", tags=["Cart"])
             summary="Получить корзину текущего пользователя"
             )
 def get_cart(
-        current_user: UserEntity = Depends(get_current_user), db: Session = Depends(get_db)):
-    return CartService(db).get_or_create_cart(user_id=current_user.id)
+        current_user: UserEntity = Depends(get_current_user),
+        db: Session = Depends(get_db)
+):
+    return CartService(db).get_or_create_cart(
+        user_id=current_user.id
+    )
 
 
 @router.post(

@@ -11,8 +11,15 @@ router = APIRouter(tags=["Product"])
 
 @router.get("/product/{product_id}", response_model=ProductResponse)
 def get_product(product_id: int, db: Session = Depends(get_db)):
-    return ProductService(db).get_product_by_id(product_id)
+    return ProductService(db).get_product_by_id(
+        product_id=product_id
+    )
 
 @router.post("/products", response_model=List[ProductResponse])
 def get_products(filters: ProductFilterRequest = Body(...), db: Session = Depends(get_db)):
-    return ProductService(db).get_products(filters)
+    return ProductService(db).get_products(
+        category_id=filters.category_id,
+        min_price=filters.min_price,
+        max_price=filters.max_price,
+        sort_by_price=filters.sort_by_price
+    )

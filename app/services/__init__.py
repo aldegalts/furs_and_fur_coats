@@ -3,3 +3,6 @@ from .auth_yandex_service import AuthYandexService
 from .category_service import CategoryService
 from .product_service import ProductService
 from .email_service import EmailService
+from .cart_service import CartService
+from .order_service import OrderService
+from .analytics_service import AnalyticsService

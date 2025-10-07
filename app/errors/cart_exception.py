@@ -1,7 +1,6 @@
-from typing import Optional, Any
+from typing import Optional
 
-from app.errors.app_exception import NotFoundException, ValidationException, BusinessLogicException, \
-    AlreadyExistsException
+from app.errors.app_exception import NotFoundException, BusinessLogicException, AlreadyExistsException
 
 
 class CartNotFoundException(NotFoundException):

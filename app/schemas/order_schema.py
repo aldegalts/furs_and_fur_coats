@@ -11,10 +11,6 @@ class OrderBase(BaseModel):
     pass
 
 
-class OrderCreate(BaseModel):
-    user_id: int
-
-
 class OrderResponse(OrderBase):
     id: int
     user_id: int

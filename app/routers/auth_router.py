@@ -12,22 +12,32 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 @router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 def register(user_in: UserCreate, db: Session = Depends(get_db)):
-    return AuthService(db).register_user(user_in)
+    return AuthService(db).register_user(
+        email=user_in.email,
+        password=user_in.password
+    )
 
 
 @router.post("/login", response_model=TokenPairResponse)
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    return AuthService(db).login_user(form_data)
+    return AuthService(db).login_user(
+        username=form_data.username,
+        password=form_data.password
+    )
 
 
 @router.get("/me", response_model=UserResponse)
 def read_me(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
-    return AuthService(db).get_current_user(token)
+    return AuthService(db).get_current_user(
+        token=token
+    )
 
 
 @router.post("/refresh", response_model=TokenPairResponse)
 def refresh_token(payload: RefreshRequest, db: Session = Depends(get_db)):
-    return AuthService(db).refresh_tokens(payload)
+    return AuthService(db).refresh_tokens(
+        refresh_token=payload.refresh_token
+    )
 
 
 @router.post("/logout")
